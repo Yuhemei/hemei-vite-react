@@ -1,10 +1,9 @@
-import ViteReactDemo from './screens/ViteReactDemo/index.js'
-import './App.css'
+import ViteReactDemo from './screens/ViteReactDemo'
 
 function App() {
     return (
-        <div id="root">
-            {/* <ViteReactDemo></ViteReactDemo> */}
+        <div>
+            <ViteReactDemo />
         </div>
     )
 }
