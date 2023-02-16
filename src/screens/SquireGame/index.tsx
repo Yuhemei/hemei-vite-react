@@ -120,7 +120,7 @@ export class Game extends React.Component {
             status = 'Next player: ' + (this.state.xIsnext ? 'X' : 'O');
         }
         return (
-            <div className="game">
+            <div className="game page">
                 <div className="game-board">
                     {/* this is the props*/}
                     <Board
