@@ -1,4 +1,4 @@
-import { Outlet, Link, useLoaderData, Form, redirect, NavLink } from "react-router-dom";
+import { Outlet, Link, Form, NavLink, useLoaderData, useNavigation, redirect, } from "react-router-dom";
 import { getContacts, createContact } from "../contacts";
 
 // 获取模拟数据
@@ -14,6 +14,7 @@ export async function action() {
 
 export default function Root() {
     const { contacts } = useLoaderData()
+    const navigation = useNavigation();
     return (
         <>
             <div id="sidebar">
@@ -80,7 +81,10 @@ export default function Root() {
                     </ul>
                 </nav>
             </div>
-            <div id="detail">
+            <div id="detail"
+                className={
+                    navigation.state === "loading" ? "loading" : ""
+                }>
                 <Outlet />
             </div>
         </>

@@ -7,7 +7,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
         plugins: [react()],
         resolve: {
             alias: {
-                '@': resolve(__dirname, 'src'),
+                '@': resolve(__dirname, 'src'),//标记'@'代表的路径
                 '@components': resolve(__dirname, 'src/components')
             }
         }
