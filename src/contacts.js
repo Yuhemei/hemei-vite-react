@@ -56,7 +56,7 @@ function set(contacts) {
 
 // fake a cache so we don't slow down stuff we've already seen
 let fakeCache = {};
-
+// 模拟延迟
 async function fakeNetwork(key) {
     if (!key) {
         fakeCache = {};
