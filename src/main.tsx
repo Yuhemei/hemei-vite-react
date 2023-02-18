@@ -11,6 +11,7 @@ import ErrorPage from "./error-page";
 import Contact, { loader as contactLoader } from "./routes/contact";
 import EditContact, { action as editAction } from "./routes/edit";
 import { action as destroyAction } from "./routes/destroy";
+import Index from "./routes/index";
 
 const router = createBrowserRouter([
     {
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
         loader: rootLoader, //类似于Vue的mounted或者$route.query/params
         action: rootAction,
         children: [
+            { index: true, element: <Index /> },
             // contact item
             {
                 path: "contacts/:contactId",
@@ -37,7 +39,7 @@ const router = createBrowserRouter([
             {
                 path: "contacts/:contactId/destroy",
                 action: destroyAction,
-                errorElement: <div>Oops! There was an error.</div>,
+                // errorElement: <div>Oops! There was an error.</div>,
             },
         ],
     },

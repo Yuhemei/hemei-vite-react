@@ -16,6 +16,7 @@ export default function Contact() {
     //     favorite: true,
     //   };
     const { contact } = useLoaderData()
+
     console.log("contact.first:", contact.first);
     return (
         <div id="contact">
