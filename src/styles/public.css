@@ -4,3 +4,6 @@
     min-height: 600px;
     padding: 32px;
 }
+button{
+    cursor: pointer;
+}

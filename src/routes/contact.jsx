@@ -2,7 +2,7 @@ import { Form, useLoaderData } from "react-router-dom";
 import { getContact } from "../contacts";
 
 export async function loader({ params }) {
-    const contact = getContact(params.contactId)
+    const contact = await getContact(params.contactId)
     return { contact }
 }
 
@@ -16,7 +16,7 @@ export default function Contact() {
     //     favorite: true,
     //   };
     const { contact } = useLoaderData()
-
+    console.log("contact.first:", contact.first);
     return (
         <div id="contact">
             <div>

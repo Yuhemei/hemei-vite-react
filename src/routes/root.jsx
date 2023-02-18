@@ -1,4 +1,4 @@
-import { Outlet, Link, useLoaderData, Form } from "react-router-dom";
+import { Outlet, Link, useLoaderData, Form, redirect } from "react-router-dom";
 import { getContacts, createContact } from "../contacts";
 
 // 获取模拟数据
@@ -9,7 +9,7 @@ export async function loader() {
 // 模拟请求
 export async function action() {
     const contact = await createContact();
-    return { contact };
+    return redirect(`/contacts/${contact.id}/edit`);
 }
 
 export default function Root() {
