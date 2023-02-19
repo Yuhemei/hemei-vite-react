@@ -2,9 +2,11 @@ import { Outlet, Link, Form, NavLink, useLoaderData, useNavigation, redirect, } 
 import { getContacts, createContact } from "../contacts";
 
 // 获取模拟数据
-export async function loader() {
-    const contacts = await getContacts();
-    return { contacts };
+export async function loader({ request }) {
+    const url = new URL(request.url);
+    const q = url.searchParams.get("q");
+    const contacts = await getContacts(q);
+    return { contacts, q };
 }
 // 模拟请求
 export async function action() {
@@ -13,14 +15,14 @@ export async function action() {
 }
 
 export default function Root() {
-    const { contacts } = useLoaderData()
+    const { contacts, q } = useLoaderData()
     const navigation = useNavigation();
     return (
         <>
             <div id="sidebar">
                 <h1>React Router Contacts</h1>
                 <div>
-                    <form id="search-form" role="search">
+                    <Form id="search-form" role="search">
                         <input
                             id="q"
                             aria-label="Search contacts"
@@ -37,7 +39,7 @@ export default function Root() {
                             className="sr-only"
                             aria-live="polite"
                         ></div>
-                    </form>
+                    </Form>
                     <Form method="post">
                         <button type="submit">New</button>
                     </Form>
