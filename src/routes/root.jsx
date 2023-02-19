@@ -9,7 +9,7 @@ import {
   redirect,
 } from "react-router-dom";
 import { getContacts, createContact } from "../contacts";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // 获取模拟数据
 export async function loader({ request }) {
@@ -28,6 +28,11 @@ export default function Root() {
   const { contacts, q } = useLoaderData();
   const navigation = useNavigation();
   const submit = useSubmit();
+  const [funcDebounce, setFuncDebounce] = useState(null);
+  // 搜索时feedback
+  const searching =
+    navigation.location &&
+    new URLSearchParams(navigation.location.search).has("q");
   useEffect(() => {
     document.getElementById("q").value = q;
   }, [q]);
@@ -39,13 +44,25 @@ export default function Root() {
           <Form id="search-form" role="search">
             <input
               id="q"
+              className={searching ? "loading" : ""}
               aria-label="Search contacts"
               placeholder="Search"
               type="search"
               name="q"
               defaultValue={q}
+              onChange={(event) => {
+                const formInfo = event.currentTarget.form;
+                console.log("funcDebounce is", funcDebounce);
+                funcDebounce && clearTimeout(funcDebounce);
+                setFuncDebounce(
+                  setTimeout(() => {
+                    console.log("到这了");
+                    submit(formInfo);
+                  }, 800)
+                );
+              }}
             />
-            <div id="search-spinner" aria-hidden hidden={true} />
+            <div id="search-spinner" aria-hidden hidden={!searching} />
             <div className="sr-only" aria-live="polite"></div>
           </Form>
           <Form method="post">
