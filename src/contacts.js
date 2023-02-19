@@ -1,3 +1,4 @@
+// 通过localforage存取数据
 import localforage from "localforage";
 import { matchSorter } from "match-sorter";
 import sortBy from "sort-by";
