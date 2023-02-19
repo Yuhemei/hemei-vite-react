@@ -29,6 +29,7 @@ export default function Root() {
                             placeholder="Search"
                             type="search"
                             name="q"
+                            defaultValue={q}
                         />
                         <div
                             id="search-spinner"
