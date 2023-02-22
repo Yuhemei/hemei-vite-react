@@ -1,0 +1,22 @@
+{
+    "editor.detectIndentation": false,
+    "editor.tabSize": 4,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "cSpell.words": [
+        "Hemei",
+        "localforage"
+    ],
+    // koroFileHeader(https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE)
+    "fileheader.customMade": {
+        "Author":"Hemei",
+        "Date": "Do not edit",
+        "FilePath": "Do not edit",
+        "Description":"Do not edit",
+        // "LastEditTime": "Do not edit",
+    },
+    "fileheader.configObj": {
+        "autoAdd": true, // 自动添加文件注释，默认开启
+        "moveCursor": true, // 移动光标到`Description :`所在行
+    }
+}

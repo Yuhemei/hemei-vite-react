@@ -58,7 +58,7 @@ export default function Root() {
                   () => {
                     submit(form);
                   },
-                  1000
+                  1
                 )();
               }}
             />
