@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import { getContacts, createContact } from "../contacts";
 import { useEffect, useState } from "react";
+import { debounce } from "@utils";
 
 // 获取模拟数据
 export async function loader({ request }) {
@@ -51,15 +52,14 @@ export default function Root() {
               name="q"
               defaultValue={q}
               onChange={(event) => {
-                const formInfo = event.currentTarget.form;
-                console.log("funcDebounce is", funcDebounce);
-                funcDebounce && clearTimeout(funcDebounce);
-                setFuncDebounce(
-                  setTimeout(() => {
-                    console.log("到这了");
-                    submit(formInfo);
-                  }, 800)
-                );
+                const { form } = event.currentTarget;
+                debounce(
+                  "submit",
+                  () => {
+                    submit(form);
+                  },
+                  1000
+                )();
               }}
             />
             <div id="search-spinner" aria-hidden hidden={!searching} />
