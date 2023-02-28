@@ -52,11 +52,14 @@ export default function Root() {
               name="q"
               defaultValue={q}
               onChange={(event) => {
+                const isFirstSearch = q == null;
                 const { form } = event.currentTarget;
                 debounce(
                   "submit",
                   () => {
-                    submit(form);
+                    submit(form, {
+                      replace: !isFirstSearch,
+                    });
                   },
                   1
                 )();
