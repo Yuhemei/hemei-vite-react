@@ -27,6 +27,12 @@ export async function action() {
 
 export default function Root() {
   const { contacts, q } = useLoaderData();
+  //   自定义路由
+  const customContacts = [
+    {
+      url: "Login",
+    },
+  ];
   const navigation = useNavigation();
   const submit = useSubmit();
   const [funcDebounce, setFuncDebounce] = useState(null);
