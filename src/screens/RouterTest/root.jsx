@@ -8,7 +8,7 @@ import {
   useSubmit,
   redirect,
 } from "react-router-dom";
-import { getContacts, createContact } from "../contacts";
+import { getContacts, createContact } from "./contacts";
 import { useEffect, useState } from "react";
 import { debounce } from "@utils";
 
@@ -22,7 +22,7 @@ export async function loader({ request }) {
 // 模拟请求
 export async function action() {
   const contact = await createContact();
-  return redirect(`/contacts/${contact.id}/edit`);
+  return redirect(`/routerTest/contacts/${contact.id}/edit`);
 }
 
 export default function Root() {
@@ -44,7 +44,7 @@ export default function Root() {
     document.getElementById("q").value = q;
   }, [q]);
   return (
-    <>
+    <div style={{ display: "flex", height: "100%" }}>
       <div id="sidebar">
         <h1>React Router Contacts</h1>
         <div>
@@ -84,9 +84,9 @@ export default function Root() {
               <ul>
                 {contacts.map((contact) => (
                   <li key={contact.id}>
-                    <Link to={`contacts/${contact.id}`}></Link>
+                    <Link to={`router${contact.id}`}></Link>
                     <NavLink
-                      to={`contacts/${contact.id}`}
+                      to={`routerTest/contacts/${contact.id}`}
                       className={({ isActive, isPending }) =>
                         isActive ? "active" : isPending ? "pending" : ""
                       }
@@ -118,6 +118,6 @@ export default function Root() {
       >
         <Outlet />
       </div>
-    </>
+    </div>
   );
 }

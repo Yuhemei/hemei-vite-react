@@ -5,18 +5,18 @@
  * @Description: 路由组件
  */
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "@/screens/Home";
+import Home from "@/screens/Home/Home";
 
 import Root, {
   loader as rootLoader,
   action as rootAction,
-} from "./routes/root";
+} from "./screens/RouterTest/root";
 import ErrorPage from "./error-page";
-import Contact, { loader as contactLoader } from "./routes/contact";
-import EditContact, { action as editAction } from "./routes/edit";
+import Contact, { loader as contactLoader } from "./screens/RouterTest/contact";
+import EditContact, { action as editAction } from "./screens/RouterTest/edit";
 import Login from "@/screens/Login";
-import { action as destroyAction } from "./routes/destroy";
-import Index from "./routes/index";
+import { action as destroyAction } from "./screens/RouterTest/destroy";
+import Index from "./screens/RouterTest/index";
 
 const router = createBrowserRouter([
   {

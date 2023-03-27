@@ -1,11 +1,17 @@
+/*
+ * @Author: Hemei yuhemei8088@163.com
+ * @Date: 2023-02-18 13:34:58
+ * @FilePath: /vite-react-project/src/screens/RouterTest/edit.jsx
+ * @Description: Do not edit
+ */
 import { Form, useLoaderData, redirect, useNavigate } from "react-router-dom";
-import { updateContact } from "../contacts";
+import { updateContact } from "./contacts";
 
 export async function action({ request, params }) {
   const formData = await request.formData();
   const updates = Object.fromEntries(formData);
   await updateContact(params.contactId, updates);
-  return redirect(`/contacts/${params.contactId}`);
+  return redirect(`/routerTest/contacts/${params.contactId}`);
 }
 
 export default function EditContact() {

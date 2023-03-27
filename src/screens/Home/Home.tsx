@@ -1,20 +1,28 @@
 /*
  * @Author: Hemei yuhemei8088@163.com
  * @Date: 2023-03-26 22:16:34
- * @FilePath: /vite-react-project/src/screens/Home/index.tsx
+ * @FilePath: /vite-react-project/src/screens/Home/Home.tsx
  * @Description: Do not edit
  */
 import React from 'react';
 import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import './index.less'
+import { HomeTwoTone, SoundTwoTone } from '@ant-design/icons'
+import { Outlet } from 'react-router-dom';
 
 const { Header, Content, Sider } = Layout;
 
-const items1: MenuProps['items'] = ['1', '2', '3'].map((key) => ({
-    key,
-    label: `nav ${key}`,
-}));
+const topMenuItems: MenuProps['items'] = [{
+    label: "主页",
+    key: 'Home',
+    icon: <HomeTwoTone />
+}, {
+    label: "react-router",
+    key: 'router',
+    icon: <SoundTwoTone />
+}];
 
 const items2: MenuProps['items'] = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
     (icon, index) => {
@@ -42,10 +50,10 @@ const Home: React.FC = () => {
     } = theme.useToken();
 
     return (
-        <Layout>
+        <Layout className='Home'>
             <Header className="header">
                 <div className="logo" />
-                <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={items1} />
+                <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['Home']} items={topMenuItems} />
             </Header>
             <Layout>
                 <Sider width={200} style={{ background: colorBgContainer }}>
@@ -71,7 +79,7 @@ const Home: React.FC = () => {
                             background: colorBgContainer,
                         }}
                     >
-                        Content
+                        <Outlet />
                     </Content>
                 </Layout>
             </Layout>
