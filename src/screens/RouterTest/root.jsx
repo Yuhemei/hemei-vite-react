@@ -11,6 +11,7 @@ import {
 import { getContacts, createContact } from "./contacts";
 import { useEffect, useState } from "react";
 import { debounce } from "@utils";
+import { useSelector } from "react-redux";
 
 // 获取模拟数据
 export async function loader({ request }) {
@@ -40,8 +41,10 @@ export default function Root() {
   const searching =
     navigation.location &&
     new URLSearchParams(navigation.location.search).has("q");
+  const counter = useSelector((state) => state.counter.value);
   useEffect(() => {
     document.getElementById("q").value = q;
+    console.log("counter", counter);
   }, [q]);
   return (
     <div style={{ display: "flex", height: "100%" }}>
@@ -86,7 +89,7 @@ export default function Root() {
                   <li key={contact.id}>
                     <Link to={`router${contact.id}`}></Link>
                     <NavLink
-                      to={`routerTest/contacts/${contact.id}`}
+                      to={`contacts/${contact.id}`}
                       className={({ isActive, isPending }) =>
                         isActive ? "active" : isPending ? "pending" : ""
                       }

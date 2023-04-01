@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // eslint-disable-next-line 
-import './index.css';
+import './style.less';
 // class Square extends React.Component {
 //     constructor(props) {
 //         super(props);
@@ -59,7 +59,7 @@ class Board extends React.Component {
     }
 }
 // eslint-disable-next-line 
-export class Game extends React.Component {
+export default class Game extends React.Component {
     constructor(props) {
         // 
         super(props);
@@ -120,7 +120,7 @@ export class Game extends React.Component {
             status = 'Next player: ' + (this.state.xIsnext ? 'X' : 'O');
         }
         return (
-            <div className="game page">
+            <div className="game page squire-game">
                 <div className="game-board">
                     {/* this is the props*/}
                     <Board

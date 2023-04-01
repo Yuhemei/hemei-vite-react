@@ -14,7 +14,7 @@ import {
 } from "react-router-dom";
 import router from '@/router.jsx'
 
-import store from './store/store'
+import store from './store'
 import { Provider } from 'react-redux'
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(

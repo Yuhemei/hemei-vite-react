@@ -4,7 +4,7 @@
  * @FilePath: /vite-react-project/src/router.jsx
  * @Description: 路由组件
  */
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Home from "@/screens/Home/Home";
 
 import Root, {
@@ -17,6 +17,8 @@ import EditContact, { action as editAction } from "./screens/RouterTest/edit";
 import Login from "@/screens/Login";
 import { action as destroyAction } from "./screens/RouterTest/destroy";
 import Index from "./screens/RouterTest/index";
+import ViteReactDemo from "@/screens/ViteReactDemo";
+import SquireGame from "@/screens/SquireGame";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +28,11 @@ const router = createBrowserRouter([
     loader: rootLoader, //类似于Vue的mounted或者$route.query/params
     action: rootAction,
     children: [
+      {
+        index: true,
+        element: <ViteReactDemo></ViteReactDemo>,
+        errorElement: <ErrorPage />,
+      },
       {
         path: "/routerTest",
         element: <Root></Root>,
@@ -56,6 +63,22 @@ const router = createBrowserRouter([
           {
             path: "Login",
             element: <Login />,
+          },
+        ],
+      },
+      {
+        path: "game",
+        element: (
+          <div>
+            {" "}
+            <Outlet></Outlet>{" "}
+          </div>
+        ),
+        errorElement: <ErrorPage />,
+        children: [
+          {
+            path: "SquireGame",
+            element: <SquireGame />,
           },
         ],
       },

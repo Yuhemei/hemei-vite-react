@@ -10,50 +10,51 @@ import type { MenuProps } from 'antd';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 import './index.less'
 import { HomeTwoTone, SoundTwoTone } from '@ant-design/icons'
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 
 const { Header, Content, Sider } = Layout;
 
 const topMenuItems: MenuProps['items'] = [{
     label: "主页",
-    key: 'Home',
+    key: '',
     icon: <HomeTwoTone />
 }, {
     label: "react-router",
-    key: 'router',
+    key: 'routerTest',
     icon: <SoundTwoTone />
 }];
 
-const items2: MenuProps['items'] = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
-    (icon, index) => {
-        const key = String(index + 1);
-
-        return {
-            key: `sub${key}`,
-            icon: React.createElement(icon),
-            label: `subnav ${key}`,
-
-            children: new Array(4).fill(null).map((_, j) => {
-                const subKey = index * 4 + j + 1;
-                return {
-                    key: subKey,
-                    label: `option${subKey}`,
-                };
-            }),
-        };
-    },
-);
-
+const items2: MenuProps['items'] = [
+    {
+        key: `game`,
+        icon: React.createElement('UsbTwoTone'),
+        label: `游戏`,
+        children: [
+            {
+                key: 'game/SquireGame',
+                label: `方块游戏`,
+            }
+        ]
+    }
+]
 const Home: React.FC = () => {
     const {
         token: { colorBgContainer },
     } = theme.useToken();
-
+    const navigate = useNavigate()
+    const location = useLocation()
     return (
         <Layout className='Home'>
             <Header className="header">
                 <div className="logo" />
-                <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['Home']} items={topMenuItems} />
+                <Menu
+                    theme="dark"
+                    mode="horizontal"
+                    defaultSelectedKeys={['Home']}
+                    items={topMenuItems}
+                    onClick={({ key }) => {
+                        navigate(`/${key}`, { replace: true })
+                    }} />
             </Header>
             <Layout>
                 <Sider width={200} style={{ background: colorBgContainer }}>
@@ -63,13 +64,15 @@ const Home: React.FC = () => {
                         defaultOpenKeys={['sub1']}
                         style={{ height: '100%', borderRight: 0 }}
                         items={items2}
+                        onClick={({ key }) => {
+                            navigate(`/${key}`, { replace: true })
+                        }}
                     />
                 </Sider>
                 <Layout style={{ padding: '0 24px 24px' }}>
-                    <Breadcrumb style={{ margin: '16px 0' }}>
-                        <Breadcrumb.Item>Home</Breadcrumb.Item>
-                        <Breadcrumb.Item>List</Breadcrumb.Item>
-                        <Breadcrumb.Item>App</Breadcrumb.Item>
+                    <Breadcrumb style={{ margin: '16px 0' }} items={
+                        [{ title: location.key }]
+                    }>
                     </Breadcrumb>
                     <Content
                         style={{
