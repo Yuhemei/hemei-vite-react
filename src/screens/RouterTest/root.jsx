@@ -89,7 +89,7 @@ export default function Root() {
                   <li key={contact.id}>
                     <Link to={`router${contact.id}`}></Link>
                     <NavLink
-                      to={`routerTest/contacts/${contact.id}`}
+                      to={`contacts/${contact.id}`}
                       className={({ isActive, isPending }) =>
                         isActive ? "active" : isPending ? "pending" : ""
                       }
